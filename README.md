@@ -12,6 +12,7 @@ Role Variables
 --------------
 
 * domains: Set the domain(s) and its optional aliases to be served by Let's Encrypt.
+* (optional) dehydrated_version: Set the version to be used for [dehydration](https://github.com/lukas2511/dehydrated/releases), defaults to 'HEAD'.
 
 Dependencies
 ------------
@@ -32,7 +33,7 @@ Multiple domains:
 ```yaml
     - hosts: website
       roles:
-        - { role: letsencrypt, domains: [ 'demo.example.com', 'demo2.example.com' ] }
+        - { role: letsencrypt, domains: [ 'demo.example.com', 'demo2.example.com' ], dehydrated_version: 'v0.6.2' }
 ```
 
 To put domain aliases, put the alias next to the main domain:
