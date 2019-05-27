@@ -1,6 +1,8 @@
 letsencrypt
 ===========
 
+[![Build Status](https://travis-ci.com/jkirk/ansible-role-letsencrypt.svg?branch=master)](https://travis-ci.com/jkirk/ansible-role-letsencrypt)
+
 A simple role to deploy letsencrypt to a website.
 
 Requirements
