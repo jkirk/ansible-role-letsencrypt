@@ -1,0 +1,38 @@
+---
+- name: Clone / update dehydrated script for letsencrypt
+  git:
+    repo: https://github.com/lukas2511/dehydrated.git
+    dest: /root/dehydrated
+- name: Create letsencrypt directory
+  file: path=/etc/ssl/letsencrypt state=directory owner=root group=root mode=0755
+- name: Deploy dehydrated config file
+  copy: src=ssl/letsencrypt/config dest=/etc/ssl/letsencrypt/config owner=root group=root mode=0644
+- name: Deploy dehydrated domains
+  template: src=etc_ssl_letsencrypt/domains.txt.j2 dest=/etc/ssl/letsencrypt/domains.txt owner=root group=root mode=0644
+- name: Setup http-01-type verification for letsencrypt
+  file: path=/var/www/dehydrated state=directory owner=root group=root mode=0755
+- stat: path=/etc/apache2/conf.d
+  register: confd
+- copy: src=etc_apache2_conf-available/letsencrypt.conf dest=/etc/apache2/conf.d/letsencrypt.conf owner=root group=root mode=0644
+  when: confd.stat.exists == True
+  notify:
+  - reload apache2
+- copy: src=etc_apache2_conf-available/letsencrypt.conf dest=/etc/apache2/conf-available/letsencrypt.conf owner=root group=root mode=0644
+  when: confd.stat.exists == False
+- file: src=../conf-available/letsencrypt.conf dest=/etc/apache2/conf-enabled/letsencrypt.conf state=link
+  when: confd.stat.exists == False and not ansible_check_mode
+  notify:
+  - restart apache2
+- meta: flush_handlers
+- name: Ensure curl is installed
+  apt: name=curl state=present
+- name: Run dehydrated (register account key)
+  shell: /root/dehydrated/dehydrated --config /etc/ssl/letsencrypt/config --register --accept-terms
+  register: dehydrated_register
+  changed_when: "'+ Account already registered!' not in dehydrated_register.stdout"
+- name: Run dehydrated (sign/renew keys)
+  shell: /root/dehydrated/dehydrated --config /etc/ssl/letsencrypt/config -c
+  register: dehydrated_config
+  changed_when: "'Skipping renew!' not in dehydrated_config.stdout"
+- name: Enable cronjob for dehydrated
+  copy: src=files/cron.d/letsencrypt dest=/etc/cron.d/letsencrypt owner=root group=root mode=0644

@@ -1,0 +1,17 @@
+---
+# Role: letsencrypt
+#
+# Usage:
+#
+#   roles:
+#     - { role: letsencrypt,
+#     domains: [
+#       'demo.exmample.at',
+#       'demo2.example.at'
+#     ]}
+#
+# Paramters:
+#
+#  domains: List of domains which should be handled via letsencrypt
+
+- include_tasks: letsencrypt.yml
