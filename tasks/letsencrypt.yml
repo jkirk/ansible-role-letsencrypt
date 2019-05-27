@@ -54,13 +54,15 @@
   command: /root/dehydrated/dehydrated --config /etc/ssl/letsencrypt/config --register --accept-terms
   register: dehydrated_register
   changed_when: "'+ Account already registered!' not in dehydrated_register.stdout"
+  # Let's Encrypt client / dehydrated should not register account key in molecule test
+  when: not dockerenv.stat.exists
   notify:
     - restart apache2
 - name: Run dehydrated (sign/renew keys)
   command: /root/dehydrated/dehydrated --config /etc/ssl/letsencrypt/config -c
   register: dehydrated_config
   changed_when: "'Skipping renew!' not in dehydrated_config.stdout"
-  # Let's Encrypt / dehydrated should not sign/renew keys when in molecule test
+  # Let's Encrypt client / dehydrated should not sign/renew keys when in molecule test
   when: not dockerenv.stat.exists
   notify:
     - restart apache2
