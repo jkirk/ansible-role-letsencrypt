@@ -1,4 +1,8 @@
 ---
+- name: Make sure that git is installed
+  apt:
+    name: git
+    state: present
 - name: Clone / update dehydrated script for letsencrypt
   git:
     repo: https://github.com/lukas2511/dehydrated.git
