@@ -3,4 +3,4 @@
   hosts: all
   roles:
     - role: ansible-role-letsencrypt
-      domains: 'demo.example.com'
+      letsencrypt_domains: 'demo.example.com'

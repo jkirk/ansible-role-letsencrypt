@@ -1,5 +1,5 @@
 # {{ ansible_managed }}
 
-{% for domainname in domains %}
+{% for domainname in letsencrypt_domains %}
 {{ domainname }}
 {% endfor %}

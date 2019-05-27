@@ -20,7 +20,7 @@
   git:
     repo: https://github.com/lukas2511/dehydrated.git
     dest: /root/dehydrated
-    version: "{{ dehydrated_version | default('HEAD') }}"
+    version: "{{ letsencrypt_dehydrated_version | default('HEAD') }}"
 - name: Create letsencrypt directory
   file: path=/etc/ssl/letsencrypt state=directory owner=root group=root mode=0755
 - name: Deploy dehydrated config file
