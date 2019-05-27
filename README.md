@@ -48,9 +48,9 @@ To put domain aliases, put the alias next to the main domain:
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Darshaka Pathirana - https://synpro.solutions
