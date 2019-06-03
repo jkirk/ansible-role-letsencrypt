@@ -28,21 +28,21 @@ Single domain:
 ```yaml
     - hosts: website
       roles:
-        - { role: letsencrypt, letsencrypt_domains: [ 'demo.example.com' ] }
+        - { role: jkirk.letsencrypt, letsencrypt_domains: [ 'demo.example.com' ] }
 ```
 
 Multiple domains:
 ```yaml
     - hosts: website
       roles:
-        - { role: letsencrypt, letsencrypt_domains: [ 'demo.example.com', 'demo2.example.com' ], dehydrated_version: 'v0.6.2' }
+        - { role: jkirk.letsencrypt, letsencrypt_domains: [ 'demo.example.com', 'demo2.example.com' ], letsencrypt_dehydrated_version: 'v0.6.2' }
 ```
 
 To put domain aliases, put the alias next to the main domain:
 ```yaml
     - hosts: website
       roles:
-        - { role: letsencrypt, letsencrypt_domains: [ 'demo.example.com alias.example.com' ] }
+        - { role: jkirk.letsencrypt, letsencrypt_domains: [ 'demo.example.com alias.example.com' ] }
 ```
 
 License
