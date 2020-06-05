@@ -2,4 +2,4 @@
 # This file is deployed as /etc/cron.d/letsencrypt
 
 # Update Let's Encrypt once a week (on Sunday at 23:42)
-42 23 * * 0  root    /root/dehydrated/dehydrated --config /etc/ssl/letsencrypt/config -c
+42 23 * * 0  root    /usr/bin/chronic /root/dehydrated/dehydrated --config /etc/ssl/letsencrypt/config -c
