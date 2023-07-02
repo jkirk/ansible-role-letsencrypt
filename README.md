@@ -1,7 +1,8 @@
 letsencrypt
 ===========
 
-[![Build Status](https://travis-ci.com/jkirk/ansible-role-letsencrypt.svg?branch=master)](https://travis-ci.com/jkirk/ansible-role-letsencrypt)
+![Lint Code Base](https://github.com/jkirk/ansible-role-base/actions/workflows/linter.yml/badge.svg)
+![Ansible Molecule](https://github.com/jkirk/ansible-role-base/actions/workflows/molecule.yml/badge.svg)
 
 A simple role to deploy letsencrypt to a website.
 
@@ -53,4 +54,4 @@ MIT
 Author Information
 ------------------
 
-Darshaka Pathirana - https://synpro.solutions
+Darshaka Pathirana - <https://synpro.solutions>
