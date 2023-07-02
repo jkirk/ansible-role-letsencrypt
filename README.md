@@ -4,7 +4,7 @@ letsencrypt
 ![Lint Code Base](https://github.com/jkirk/ansible-role-base/actions/workflows/linter.yml/badge.svg)
 ![Ansible Molecule](https://github.com/jkirk/ansible-role-base/actions/workflows/molecule.yml/badge.svg)
 
-A simple role to deploy letsencrypt to a website.
+A simple role to deploy [Dehydrated](https://github.com/dehydrated-io/dehydrated), a client for signing certificates with an ACME-server (e.g. Let's Encrypt).
 
 Requirements
 ------------
@@ -15,7 +15,7 @@ Role Variables
 --------------
 
 * letsencrypt_domains: Set the domain(s) and its optional aliases to be served by Let's Encrypt.
-* (optional) letsencrypt_dehydrated_version: Set the version to be used for [dehydration](https://github.com/lukas2511/dehydrated/releases), defaults to 'HEAD'.
+* (optional) letsencrypt_dehydrated_version: Set the version to be used for [Dehydrated](https://github.com/dehydrated-io/dehydrated/releases), defaults to 'v0.7.1'.
 
 Dependencies
 ------------

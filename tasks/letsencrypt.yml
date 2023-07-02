@@ -18,13 +18,20 @@
 
 - name: Clone / update dehydrated script for letsencrypt
   git:
-    repo: https://github.com/lukas2511/dehydrated.git
+    repo: https://github.com/dehydrated-io/dehydrated
     dest: /root/dehydrated
     version: "{{ letsencrypt_dehydrated_version }}"
 - name: Create letsencrypt directory
   file: path=/etc/ssl/letsencrypt state=directory owner=root group=root mode=0755
+
 - name: Deploy dehydrated config file
-  copy: src=ssl/letsencrypt/config dest=/etc/ssl/letsencrypt/config owner=root group=root mode=0644
+  template:
+    src: 'etc_ssl_letsencrypt/config.j2'
+    dest: '/etc/ssl/letsencrypt/config'
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Deploy dehydrated domains
   template: src=etc_ssl_letsencrypt/domains.txt.j2 dest=/etc/ssl/letsencrypt/domains.txt owner=root group=root mode=0644
 - name: Setup http-01-type verification for letsencrypt

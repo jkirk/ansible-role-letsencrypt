@@ -1,4 +1,4 @@
 ---
 # defaults file for ansible-role-letsencrypt
 
-letsencrypt_dehydrated_version: 'v0.6.5'
+letsencrypt_dehydrated_version: 'v0.7.1'
