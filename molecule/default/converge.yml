@@ -2,5 +2,5 @@
 - name: Converge
   hosts: all
   roles:
-    - role: ansible-role-letsencrypt
+    - role: jkirk.letsencrypt
       letsencrypt_domains: 'demo.example.com'

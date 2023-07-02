@@ -2,7 +2,9 @@
 galaxy_info:
   author: Darshaka Pathirana
   description: A simple role to deploy letsencrypt to a website.
-  company: Synpro Solutions
+  company: Synpro Solutions GmbH
+  namespace: jkirk
+  role_name: letsencrypt
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
@@ -40,12 +42,9 @@ galaxy_info:
     - name: Debian
       versions:
         - 9
-  # - name: SomePlatform
-  #   versions:
-  #   - all
-  #   - 1.0
-  #   - 7
-  #   - 99.99
+        - 10
+        - 11
+        - 12
 
   galaxy_tags: []
   # List tags for your role here, one per line. A tag is a keyword that describes
