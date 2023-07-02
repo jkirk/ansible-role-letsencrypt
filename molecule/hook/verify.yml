@@ -1,0 +1,22 @@
+---
+# This is playbook checks if the dehydrated config file has been deployed correctly
+
+- name: Verify
+  hosts: all
+  tasks:
+  - name: Deploy dehydrated config file
+    copy:
+      src: 'config.verify'
+      dest: '/etc/ssl/letsencrypt/config'
+      owner: root
+      group: root
+      mode: 0644
+    register: dehydrated_config_verify
+    check_mode: true
+    diff: true
+
+  - name: Assert generated dehydrated config file
+    assert:
+      that:
+        - not dehydrated_config_verify.changed
+      msg: 'Unexpected change in /etc/ssl/letsencrypt/config'

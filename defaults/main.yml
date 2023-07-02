@@ -2,3 +2,11 @@
 # defaults file for ansible-role-letsencrypt
 
 letsencrypt_dehydrated_version: 'v0.7.1'
+
+# Place a hook.sh file in the custom files/etc_ssh_letencrypt folder and set
+# letsencrypt_dehydrated_hook: true
+#
+# The hook script will then be copied to //etc/ssl/letsencrypt and the HOOK
+# variable in dehydrated config file will be set accordingly.
+#
+letsencrypt_dehydrated_hook: false

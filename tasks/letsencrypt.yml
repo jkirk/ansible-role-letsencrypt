@@ -24,6 +24,23 @@
 - name: Create letsencrypt directory
   file: path=/etc/ssl/letsencrypt state=directory owner=root group=root mode=0755
 
+- name: Deploy dehydrated hook file
+  copy:
+    src: 'etc_ssl_letsencrypt/hook.sh'
+    dest: '/etc/ssl/letsencrypt/hook.sh'
+    owner: root
+    group: root
+    mode: 0755
+  when:
+    - letsencrypt_dehydrated_hook | bool
+
+- name: Delete dehydrated hook file
+  file:
+    dest: '/etc/ssl/letsencrypt/hook.sh'
+    state: absent
+  when:
+    - not letsencrypt_dehydrated_hook | bool
+
 - name: Deploy dehydrated config file
   template:
     src: 'etc_ssl_letsencrypt/config.j2'
@@ -33,7 +50,13 @@
     mode: 0644
 
 - name: Deploy dehydrated domains
-  template: src=etc_ssl_letsencrypt/domains.txt.j2 dest=/etc/ssl/letsencrypt/domains.txt owner=root group=root mode=0644
+  template:
+    src: 'etc_ssl_letsencrypt/domains.txt.j2'
+    dest: '/etc/ssl/letsencrypt/domains.txt'
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Setup http-01-type verification for letsencrypt
   file: path=/var/www/dehydrated state=directory owner=root group=root mode=0755
 

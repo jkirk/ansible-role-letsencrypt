@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: jkirk.letsencrypt
+      letsencrypt_domains: 'demo.example.com'
+      letsencrypt_dehydrated_hook: true

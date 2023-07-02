@@ -89,11 +89,7 @@
 #
 # BASEDIR and WELLKNOWN variables are exported and can be used in an external program
 # default: <unset>
-{% if letsencrypt_dehydrated_hook %}
-HOOK=/etc/ssl/letsencrypt/hook.sh
-{% else %}
 # HOOK=
-{% endif %}{# if letsencrypt_dehydrated_hook #}
 
 # Chain clean_challenge|deploy_challenge arguments together into one hook call per certificate (default: no)
 #HOOK_CHAIN="no"
